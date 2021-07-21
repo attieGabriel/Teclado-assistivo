@@ -1,0 +1,43 @@
+const int botao[4] = {2,3,4,5};
+int cont=-1;
+const char letras1[9] = {'a','b','c','d','e','f','g','h','i'};
+const char letras2[9] = {'j','k','l','m','n','o','p','q','r'};
+const char letras3[8] = {'s','t','u','v','w','x','y','z'};
+
+void setup() {
+  Serial.begin(9600);
+  for(int i=0; i<4;i++){
+    pinMode(botao[i], INPUT_PULLUP);
+  }
+}
+
+void loop() {
+  if(digitalRead(botao[0]) == LOW) 
+  {
+    cont=-1;
+  }
+  else if(digitalRead(botao[1]) == LOW) 
+  {
+    cont=cont+3;
+  }
+  else if(digitalRead(botao[2]) == LOW) 
+  {
+    cont-=-1;
+  }
+  else if(digitalRead(botao[3]) == LOW) 
+  {
+    if(cont>=0 && cont<=8)
+    {
+      Serial.println(letras1[cont]);
+    }
+    else if(cont>8 && cont<=17)
+    {
+      Serial.println(letras2[cont-9]);
+    }
+    else if(cont>17 && cont<=25)
+    {
+      Serial.println(letras3[cont-18]);
+    }
+  }
+  delay(1000);
+  }
